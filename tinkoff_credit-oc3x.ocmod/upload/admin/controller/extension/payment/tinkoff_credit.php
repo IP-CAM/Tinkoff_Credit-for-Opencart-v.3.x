@@ -55,12 +55,10 @@ class ControllerExtensionPaymentTinkoffCredit extends Controller {
         }
 
 
-
+        $data['payment_tinkoff_credit_action'] = $this->request->post['payment_tinkoff_credit_action'];
 
 		if( $data['payment_tinkoff_credit_mode'] == 'prod' ){
-
-		    $data['payment_tinkoff_credit_action'] = $this->request->post['payment_tinkoff_credit_action'];
-
+		    
             if (isset($this->request->post['payment_tinkoff_credit_shopId'])) {
                 $data['payment_tinkoff_credit_shopId'] = $this->request->post['payment_tinkoff_credit_shopId'];
             } else {
@@ -74,7 +72,6 @@ class ControllerExtensionPaymentTinkoffCredit extends Controller {
             }
 
         }else{
-            $data['payment_tinkoff_credit_action'] = $this->request->post['payment_tinkoff_credit_action'];
             $data['payment_tinkoff_credit_shopId'] = 'test_online';
             $data['payment_tinkoff_credit_showcaseId'] = 'test_online';
         }
