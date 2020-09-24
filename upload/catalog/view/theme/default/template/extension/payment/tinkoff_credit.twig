@@ -1,0 +1,56 @@
+<div class="buttons">
+  <div class="pull-right">
+    <button type="button" id="button-confirm" class="button-continue button-confirm">подтвердить заказ</button>
+  </div>
+</div>
+
+<form class="tinkoff-form-hidden" action='https://loans.tinkoff.ru/api/partners/v1/lightweight/create' method='post'>
+
+
+
+  <input name='shopId' value='{{ shopId }}' type='hidden'/>
+
+  <input name='showcaseId' value='{{ showcaseId }}' type='hidden'/>
+
+  <input name='promoCode' value='default' type='hidden'/>
+
+  <input name='sum' value='{{ sum }}.00' type='hidden'>
+  {% for product in products %}
+
+    <input name='itemName_{{ product.i }}' value='{{ product.name }}' type='hidden'/>
+    <input name='itemQuantity_{{ product.i }}' value='{{ product.quantity }}' type='hidden'/>
+    <input name='itemPrice_{{ product.i }}' value='{{ product.final }}.00' type='hidden'/>
+    <input name='itemCategory_{{ product.i }}' value='{{ product.model }}' type='hidden'/>
+
+  {% endfor %}
+
+  <input name='customerPhone' value='{{ phone }}' type='hidden'/>
+
+  <input name='customerEmail' value='{{ email }}' type='hidden'/>
+
+  <input id="tinkoff-submit" type='submit' value='Купи в кредит'/>
+
+</form>
+
+<script type="text/javascript"><!--
+$('#button-confirm').on('click', function() {
+	$.ajax({
+		url: 'index.php?route=extension/payment/tinkoff_credit/confirm',
+		dataType: 'json',
+		beforeSend: function() {
+			$('#button-confirm').text("Подождите..");
+		},
+		complete: function() {
+            $('#button-confirm').text("подтвердить заказ");
+		},
+		success: function(json) {
+			if (json['redirect']) {
+				$("#tinkoff-submit").trigger("click");
+			}
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+//--></script>
