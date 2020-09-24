@@ -54,11 +54,14 @@ class ControllerExtensionPaymentTinkoffCredit extends Controller {
             $data['payment_tinkoff_credit_mode'] = $this->config->get('payment_tinkoff_credit_mode');
         }
 
-
-        $data['payment_tinkoff_credit_action'] = $this->request->post['payment_tinkoff_credit_action'];
+        if (isset($this->request->post['payment_tinkoff_credit_mode'])) {
+            $data['payment_tinkoff_credit_action'] = $this->request->post['payment_tinkoff_credit_action'];
+        }else{
+            $data['payment_tinkoff_credit_action'] = $this->config->get('payment_tinkoff_credit_action');
+        }
 
 		if( $data['payment_tinkoff_credit_mode'] == 'prod' ){
-		    
+
             if (isset($this->request->post['payment_tinkoff_credit_shopId'])) {
                 $data['payment_tinkoff_credit_shopId'] = $this->request->post['payment_tinkoff_credit_shopId'];
             } else {
