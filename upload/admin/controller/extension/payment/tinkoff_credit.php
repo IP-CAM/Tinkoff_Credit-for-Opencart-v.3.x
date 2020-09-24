@@ -48,18 +48,37 @@ class ControllerExtensionPaymentTinkoffCredit extends Controller {
 
 		$data['payment_tinkoff_credit'] = array();
 
-        if (isset($this->request->post['payment_tinkoff_credit_shopId'])) {
-            $data['payment_tinkoff_credit_shopId'] = $this->request->post['payment_tinkoff_credit_shopId'];
+        if (isset($this->request->post['payment_tinkoff_credit_mode'])) {
+            $data['payment_tinkoff_credit_mode'] = $this->request->post['payment_tinkoff_credit_mode'];
         } else {
-            $data['payment_tinkoff_credit_shopId'] = $this->config->get('payment_tinkoff_credit_shopId');
+            $data['payment_tinkoff_credit_mode'] = $this->config->get('payment_tinkoff_credit_mode');
         }
 
-        if (isset($this->request->post['payment_tinkoff_credit_showcaseId'])) {
-            $data['payment_tinkoff_credit_showcaseId'] = $this->request->post['payment_tinkoff_credit_showcaseId'];
-        } else {
-            $data['payment_tinkoff_credit_showcaseId'] = $this->config->get('payment_tinkoff_credit_showcaseId');
+
+
+
+		if( $data['payment_tinkoff_credit_mode'] == 'prod' ){
+
+		    $data['payment_tinkoff_credit_action'] = $this->request->post['payment_tinkoff_credit_action'];
+
+            if (isset($this->request->post['payment_tinkoff_credit_shopId'])) {
+                $data['payment_tinkoff_credit_shopId'] = $this->request->post['payment_tinkoff_credit_shopId'];
+            } else {
+                $data['payment_tinkoff_credit_shopId'] = $this->config->get('payment_tinkoff_credit_shopId');
+            }
+
+            if (isset($this->request->post['payment_tinkoff_credit_showcaseId'])) {
+                $data['payment_tinkoff_credit_showcaseId'] = $this->request->post['payment_tinkoff_credit_showcaseId'];
+            } else {
+                $data['payment_tinkoff_credit_showcaseId'] = $this->config->get('payment_tinkoff_credit_showcaseId');
+            }
+
+        }else{
+            $data['payment_tinkoff_credit_action'] = $this->request->post['payment_tinkoff_credit_action'];
+            $data['payment_tinkoff_credit_shopId'] = 'test_online';
+            $data['payment_tinkoff_credit_showcaseId'] = 'test_online';
         }
-		
+
 
 
 		if (isset($this->request->post['payment_tinkoff_credit_total'])) {

@@ -3,6 +3,7 @@ class ControllerExtensionPaymentTinkoffCredit extends Controller {
 	public function index() {
 		$this->load->language('extension/payment/tinkoff_credit');
 
+		$data['action'] = $this->config->get('payment_tinkoff_credit_action');
         $data['shopId'] = $this->config->get('payment_tinkoff_credit_shopId');
         $data['showcaseId'] = $this->config->get('payment_tinkoff_credit_showcaseId');
 

@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']      = 'Рассрочка от Тинькофф';
+$_['heading_title']      = 'Tinkoff Credit';
 
 // Text
 $_['text_extension']     = 'Расширения';
@@ -16,6 +16,11 @@ $_['entry_sort_order']   = 'Порядок сортировки';
 
 $_['entry_shopId']       = 'Shop ID';
 $_['entry_showcaseId']   = 'Showcase ID';
+
+// Mode
+$_['entry_mode'] = 'Выберите тип доступа';
+$_['mode_test'] = 'Тестовые параметры';
+$_['mode_prod'] = 'Боевые параметры';
 
 // Help
 $_['help_total']         = 'Минимальная сумма заказа. Ниже данной суммы, способ оплаты будет недоступен.'; 

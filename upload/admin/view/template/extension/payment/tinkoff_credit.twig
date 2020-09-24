@@ -1,4 +1,5 @@
 {{ header }}{{ column_left }}
+
 <div id="content">
   <div class="page-header">
     <div class="container-fluid">
@@ -27,16 +28,41 @@
         <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-payment" class="form-horizontal">
 
           <div class="form-group">
-            <label class="col-sm-2 control-label" for="input-shopId"><span data-toggle="tooltip" title="{{ help_shopId }}">{{ entry_shopId }}</span></label>
+            <label class="col-sm-2 control-label" for="input-mode">{{ entry_mode }}</label>
             <div class="col-sm-10">
-              <input type="text" name="payment_tinkoff_credit_shopId" value="{{ payment_tinkoff_credit_shopId }}" placeholder="{{ entry_shopId }}" id="input-shopId" class="form-control" />
+              <select name="payment_tinkoff_credit_mode" id="input-mode" class="form-control">
+                {% if payment_tinkoff_credit_mode == 'test' %}
+                  <option value="test" selected="selected">{{ mode_test }}</option>
+                  <option value="prod">{{ mode_prod }}</option>
+                {% else %}
+                  <option value="test">{{ mode_test }}</option>
+                  <option value="prod" selected="selected">{{ mode_prod }}</option>
+                {% endif %}
+              </select>
             </div>
           </div>
 
-          <div class="form-group">
+          <input type="hidden" name="payment_tinkoff_credit_action" id="input_action" value="{{ payment_tinkoff_credit_action }}">
+
+          <div class="tinkoff-access form-group{% if payment_tinkoff_credit_mode != 'prod' %} hiden{% endif %}">
+            <label class="col-sm-2 control-label" for="input-shopId"><span data-toggle="tooltip" title="{{ help_shopId }}">{{ entry_shopId }}</span></label>
+            <div class="col-sm-10">
+              {% if payment_tinkoff_credit_shopId == 'test_online' %}
+              <input type="text" name="payment_tinkoff_credit_shopId" value="" placeholder="{{ entry_shopId }}" id="input-shopId" class="form-control" />
+              {% else %}
+              <input type="text" name="payment_tinkoff_credit_shopId" value="{{ payment_tinkoff_credit_shopId }}" placeholder="{{ entry_shopId }}" id="input-shopId" class="form-control" />
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="tinkoff-access form-group{% if payment_tinkoff_credit_mode != 'prod' %} hiden{% endif %}">
             <label class="col-sm-2 control-label" for="input-showcaseId"><span data-toggle="tooltip" title="{{ help_total }}">{{ entry_total }}</span></label>
             <div class="col-sm-10">
-              <input type="text" name="payment_tinkoff_credit_showcaseId" value="{{ payment_tinkoff_credit_shopId }}" placeholder="{{ entry_shopId }}" id="input-showcaseId" class="form-control" />
+              {% if payment_tinkoff_credit_showcaseId == 'test_online' %}
+              <input type="text" name="payment_tinkoff_credit_showcaseId" value="{{ payment_tinkoff_showcaseId }}" placeholder="{{ entry_showcaseId }}" id="input-showcaseId" class="form-control" />
+              {% else %}
+              <input type="text" name="payment_tinkoff_credit_showcaseId" value="" placeholder="{{ entry_shopId }}" id="input-showcaseId" class="form-control" />
+              {% endif %}
             </div>
           </div>
 
@@ -101,4 +127,31 @@
     </div>
   </div>
 </div>
+
+<style>
+  .form-group.hiden{
+    display: none;
+  }
+</style>
+<script>
+  $(document).ready(function () {
+
+    if( $('#input-mode').val() == 'test' ){
+      $('#input_action').val('https://loans-qa.tcsbank.ru/api/partners/v1/lightweight/create');
+    }else{
+      $('#input_action').val('https://loans.tinkoff.ru/api/partners/v1/lightweight/create');
+    }
+
+  });
+  $('#input-mode').on('change', function () {
+    if( $(this).val() == 'test' ){
+      $('.tinkoff-access').addClass('hiden');
+      $('#input_action').val('https://loans-qa.tcsbank.ru/api/partners/v1/lightweight/create');
+    }else{
+      $('.tinkoff-access').removeClass('hiden');
+      $('#input_action').val('https://loans.tinkoff.ru/api/partners/v1/lightweight/create');
+    }
+  });
+</script>
+
 {{ footer }}
