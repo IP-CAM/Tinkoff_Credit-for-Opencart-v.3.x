@@ -75,7 +75,7 @@
               <script>var i = 0;</script>
               <div class="promocode-input-container">
                 {% for promoCode in payment_tinkoff_credit_promoCode %}
-                <div>
+                <div class='promoCode-item'>
                   <input type='text' class='form-control' name='payment_tinkoff_credit_promoCode[{{ promoCode.counter }}][name]' value='{{ promoCode.name }}' placeholder='Название промокода'>
                   <input type='text' class='form-control' name='payment_tinkoff_credit_promoCode[{{ promoCode.counter }}][code]' value='{{ promoCode.code }}' placeholder='Название промокода'>
                   <input type='hidden' name='payment_tinkoff_credit_promoCode[{{ promoCode.counter }}][counter]' value='{{ promoCode.counter }}'>
@@ -90,7 +90,7 @@
           <script>
             $('#add_promoCode').on('click', function () {
               $('.promocode-input-container')
-              .append("<div>" +
+              .append("<div class='promoCode-item'>" +
                      "<input type='text' class='form-control' name='payment_tinkoff_credit_promoCode["+ i +"][name]' placeholder='Название промокода'>" +
                      "<input type='text' class='form-control' name='payment_tinkoff_credit_promoCode["+ i +"][code]' placeholder='Промокод'>" +
                      "<input type='hidden' name='payment_tinkoff_credit_promoCode["+ i +"][counter]' value='"+ i +"'>" +
@@ -176,6 +176,11 @@
   .promocode-input-container .form-control:last-child{
     margin-right: 0;
   }
+    .promoCode-item{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
 </style>
 <script>
   $(document).ready(function () {
