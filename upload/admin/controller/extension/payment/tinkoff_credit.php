@@ -81,6 +81,31 @@ class ControllerExtensionPaymentTinkoffCredit extends Controller {
 
 
 
+        if (!empty($this->request->get['payment_tinkoff_credit_promoCode'])) {
+
+            $promoCodes = $this->request->get['payment_tinkoff_credit_promoCode'];
+
+            $data['payment_tinkoff_credit_promoCode'] = array();
+
+            $i = 0;
+
+            foreach ($promoCodes as $promoCode) {
+
+                $promoCode['counter'] = $i;
+
+                $data['payment_tinkoff_credit_promoCode'][] = array(
+                    'name' => $promoCode['name'],
+                    'code' => $promoCode['code'],
+                    'counter' => $promoCode['counter'],
+                );
+
+                $i++;
+            }
+
+        } else {
+            $data['payment_tinkoff_credit_promoCode'] = $this->config->get('payment_tinkoff_credit_promoCode');
+        }
+
 		if (isset($this->request->post['payment_tinkoff_credit_total'])) {
 			$data['payment_tinkoff_credit_total'] = $this->request->post['payment_tinkoff_credit_total'];
 		} else {

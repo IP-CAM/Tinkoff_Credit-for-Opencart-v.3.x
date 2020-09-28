@@ -13,7 +13,7 @@ $_['entry_order_status'] = 'Статус заказа после оплаты';
 $_['entry_geo_zone']     = 'Географическая зона';
 $_['entry_status']       = 'Статус';
 $_['entry_sort_order']   = 'Порядок сортировки';
-
+$_['entry_promoCode']    = 'Промокоды:';
 $_['entry_shopId']       = 'Shop ID';
 $_['entry_showcaseId']   = 'Showcase ID';
 
