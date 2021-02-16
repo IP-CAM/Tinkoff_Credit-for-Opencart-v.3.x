@@ -1,41 +1,42 @@
 # tinkoff_credit-oc3x
 
-  Модуль для OpenCart версии 3.X
+  Module for OpenCart version 3.X
   
-  Способ оплаты - Купи в кредит (Тинькофф Банк) для интернет магазина
+  Payment method - Buy on credit (Tinkoff Bank) for an online store
   
-# Модуль передает вместе с заявкой:
+# The module transmits along with the request:
 
-  1. Содержимое корзины
-  2. Информацию о клиенте:
+  1. Cart Contents
+  2. Customer information:
 
   > Email
 
-  > Номер телефона
+  > Phone number
 
-# Установка
+# Installation
 
-  1. В панели администратора OpenCart перейти во вкладку "Модули / Расширения"
-  2. Перейти во вкладку "Установка расширений"
-  3. загрузить tinkoff_credit-oc3x.ocmod.zip архив
+  1. In the OpenCart admin panel, go to the "Modules / Extensions" tab
+  2. Go to the "Install extensions" tab
+  3.download tinkoff_credit-oc3x.ocmod.zip archive
 
-# Настройка
+# Setting
 
-  1. В панели администратора OpenCart перейти во вкладку "Модули / Расширения"
-  2. Выбрать тип расширения "Оплата"
-  3. Нажать кнопку активировать напротив "Tinkoff Credit"
-  4. Нажать кнопку редактировать напротив "Tinkoff Credit"
-  5. Ввести параметры:
+  1. In the OpenCart admin panel, go to the "Modules / Extensions" tab
+  2. Select the type of extension "Payment"
+  3. Press the activate button opposite "Tinkoff Credit"
+  4. Click the edit button opposite "Tinkoff Credit"
+  5. Enter the parameters:
   
-  > Тестовый или боевой режим ( При тестовом режиме следующие параметры вводить не нужно )
+  > Test or combat mode (In test mode, the following parameters do not need to be entered)
   
-  > ShopId - Уникальный идентификатор магазина, выдается банком
-  при подключении.
+  > ShopId - Unique identifier of the store, issued by the bank
+  when connected.
   
-  > ShowcaseId - Идентификатор витрины магазина.
-  Витрины — это различные сайты, зарегистрированные
-  на одно юридическое лицо.
+  > ShowcaseId - Showcase ID.
+  Showcases are various sites registered
+  for one legal entity.
 
-# Дальнейшие улучшения
+# Further improvements
   
-  1. Добавление и выбор промокодов ( рассрочка )
+  1. Adding and choosing promotional codes (installments) 
+  
